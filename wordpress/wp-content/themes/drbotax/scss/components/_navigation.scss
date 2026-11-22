@@ -1,7 +1,32 @@
 @use "../abstracts/breakpoints" as bp;
 
 .primary-nav {
-  grid-area: nav;
+  position: relative;
+}
+
+.primary-nav__checkbox {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.primary-menu > .menu-item.drbotax-mega > a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+}
+
+.primary-menu > .menu-item.drbotax-mega > a::after {
+  content: "";
+  width: 0.4em;
+  height: 0.4em;
+  border-inline-end: 1.5px solid currentcolor;
+  border-block-end: 1.5px solid currentcolor;
+  transform: rotate(45deg);
+  translate: 0 -0.15em;
 }
 
 .primary-nav__toggle {
@@ -12,8 +37,15 @@
   cursor: pointer;
 }
 
-.primary-nav__toggle::-webkit-details-marker {
+.primary-menu {
   display: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.primary-nav__checkbox:checked ~ .primary-menu {
+  display: grid;
 }
 
 .primary-menu a {
@@ -24,32 +56,38 @@
   text-decoration: none;
 }
 
-.primary-nav details:not([open]) .primary-menu {
-  display: none;
-}
-
-.primary-nav details[open] .primary-menu {
-  display: grid;
+.primary-menu .current-menu-item > a,
+.primary-menu .current-menu-ancestor > a {
+  box-shadow: inset 0 calc(var(--line-width) * -2) 0 var(--color-accent);
 }
 
 .primary-menu .sub-menu {
   display: grid;
   gap: var(--space-2xs);
+  margin: 0;
   margin-block-start: var(--space-2xs);
+  padding: 0;
   padding-inline-start: var(--space-s);
+  list-style: none;
 }
 
 @include bp.wide {
+  .primary-nav {
+    display: flex;
+    justify-content: right;
+  }
+
   .primary-nav__toggle {
     display: none;
   }
 
-  .primary-nav details .primary-menu,
-  .primary-nav details:not([open]) .primary-menu {
+  .primary-menu,
+  .primary-nav__checkbox:checked ~ .primary-menu {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: var(--space-s) var(--space-m);
+    justify-content: right;
+    gap: var(--space-s) var(--space-l);
   }
 
   .primary-menu .menu-item-has-children {

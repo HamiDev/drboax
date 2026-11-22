@@ -14,18 +14,47 @@ add_action( 'wp_head', 'drbotax_preload_fonts', 2 );
  * Enqueue the compiled stylesheet after WooCommerce when it is present.
  */
 function drbotax_enqueue_assets() {
-	$path = get_template_directory() . '/assets/css/main.css';
-	$deps = array();
+	$path      = get_template_directory() . '/assets/css/main.css';
+	$icons_path = get_template_directory() . '/assets/icons/style.css';
+	$deps      = array();
 
 	if ( wp_style_is( 'woocommerce-general', 'registered' ) ) {
 		$deps[] = 'woocommerce-general';
 	}
 
 	wp_enqueue_style(
+		'drbotax-icons',
+		get_template_directory_uri() . '/assets/icons/style.css',
+		array(),
+		file_exists( $icons_path ) ? (string) filemtime( $icons_path ) : '0.1.0'
+	);
+
+	$deps[] = 'drbotax-icons';
+
+	wp_enqueue_style(
 		'drbotax-main',
 		get_template_directory_uri() . '/assets/css/main.css',
 		$deps,
 		file_exists( $path ) ? (string) filemtime( $path ) : '0.1.0'
+	);
+
+	$header_script = get_template_directory() . '/assets/js/header.js';
+	$mega_script   = get_template_directory() . '/assets/js/mega-menu.js';
+
+	wp_enqueue_script(
+		'drbotax-header',
+		get_template_directory_uri() . '/assets/js/header.js',
+		array(),
+		file_exists( $header_script ) ? (string) filemtime( $header_script ) : '0.1.0',
+		true
+	);
+
+	wp_enqueue_script(
+		'drbotax-mega-menu',
+		get_template_directory_uri() . '/assets/js/mega-menu.js',
+		array(),
+		file_exists( $mega_script ) ? (string) filemtime( $mega_script ) : '0.1.0',
+		true
 	);
 }
 

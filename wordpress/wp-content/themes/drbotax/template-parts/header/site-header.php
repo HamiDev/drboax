@@ -1,6 +1,6 @@
 <?php
 /**
- * Site header: announcement, brand, navigation, and account actions.
+ * Site header: announcement, brand, search, account actions, and navigation.
  *
  * @package Drbotax
  */
@@ -24,6 +24,7 @@ if ( function_exists( 'wc_get_page_permalink' ) ) {
 }
 
 $drbotax_cart_count = drbotax_cart_count();
+$drbotax_logo_src   = get_template_directory_uri() . '/assets/images/DrBotax-logo-full.png';
 ?>
 <header class="site-header">
 	<?php if ( '' !== $drbotax_announcement ) : ?>
@@ -35,36 +36,58 @@ $drbotax_cart_count = drbotax_cart_count();
 			<?php if ( has_custom_logo() ) : ?>
 				<?php the_custom_logo(); ?>
 			<?php else : ?>
-				<a class="site-title" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php echo esc_html( $drbotax_name ); ?></a>
+				<a class="site-header__logo-link" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+					<img
+						class="site-header__logo"
+						src="<?php echo esc_url( $drbotax_logo_src ); ?>"
+						alt="<?php echo esc_attr( $drbotax_name ); ?>"
+						width="240"
+						height="80"
+						decoding="async"
+					>
+				</a>
 			<?php endif; ?>
 		</div>
 
-		<nav class="primary-nav" aria-label="<?php esc_attr_e( 'Primary', 'drbotax' ); ?>">
-			<details>
-				<summary class="primary-nav__toggle"><?php esc_html_e( 'Menu', 'drbotax' ); ?></summary>
-				<?php
-				wp_nav_menu(
-					array(
-						'theme_location' => 'primary',
-						'container'      => false,
-						'menu_class'     => 'primary-menu',
-						'menu_id'        => 'primary-menu',
-						'fallback_cb'    => 'drbotax_primary_menu_fallback',
-						'depth'          => 2,
-					)
-				);
-				?>
-			</details>
-		</nav>
+		<?php get_template_part( 'template-parts/header/search' ); ?>
 
 		<div class="site-header__actions">
-			<a class="site-header__account" href="<?php echo esc_url( $drbotax_account_url ); ?>"><?php esc_html_e( 'Account', 'drbotax' ); ?></a>
+			<a
+				class="site-header__account"
+				href="<?php echo esc_url( $drbotax_account_url ); ?>"
+				aria-label="<?php esc_attr_e( 'Account', 'drbotax' ); ?>"
+			>
+				<span class="icon-User" aria-hidden="true"></span>
+			</a>
 			<?php if ( function_exists( 'wc_get_cart_url' ) ) : ?>
-				<a class="site-header__cart" href="<?php echo esc_url( wc_get_cart_url() ); ?>" aria-label="<?php echo esc_attr( drbotax_cart_label() ); ?>">
-					<?php esc_html_e( 'Cart', 'drbotax' ); ?>
-					<span class="site-header__count"><?php echo esc_html( (string) $drbotax_cart_count ); ?></span>
+				<a
+					class="site-header__cart"
+					href="<?php echo esc_url( wc_get_cart_url() ); ?>"
+					aria-label="<?php echo esc_attr( drbotax_cart_label() ); ?>"
+				>
+					<span class="icon-ShoppingCart" aria-hidden="true"></span>
+					<?php if ( $drbotax_cart_count > 0 ) : ?>
+						<span class="site-header__count"><?php echo esc_html( (string) $drbotax_cart_count ); ?></span>
+					<?php endif; ?>
 				</a>
 			<?php endif; ?>
 		</div>
 	</div>
+
+	<nav class="wrap site-header__nav primary-nav" aria-label="<?php esc_attr_e( 'Primary', 'drbotax' ); ?>">
+		<input type="checkbox" id="drbotax-primary-nav" class="primary-nav__checkbox" autocomplete="off">
+		<label class="primary-nav__toggle" for="drbotax-primary-nav"><?php esc_html_e( 'Menu', 'drbotax' ); ?></label>
+		<?php
+		wp_nav_menu(
+			array(
+				'theme_location' => 'primary',
+				'container'      => false,
+				'menu_class'     => 'primary-menu',
+				'menu_id'        => 'primary-menu',
+				'fallback_cb'    => 'drbotax_primary_menu_fallback',
+				'depth'          => 2,
+			)
+		);
+		?>
+	</nav>
 </header>

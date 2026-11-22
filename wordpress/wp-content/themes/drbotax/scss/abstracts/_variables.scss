@@ -21,6 +21,9 @@
   --button-radius: 2px;
   --radius-pill: 999px;
   --menu-min-width: 12rem;
+  --header-logo-height: calc(var(--space-xl) * 2);
+  --header-logo-height-compact: var(--space-xl);
+  --header-search-max: 28rem;
   --lift-distance: 4px;
   --rise-distance: 12px;
   --duration-fast: 180ms;
@@ -29,5 +32,6 @@
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --stagger-step: 80ms;
   --z-menu: 2;
+  --z-header: 10;
   --z-skip: 20;
 }
