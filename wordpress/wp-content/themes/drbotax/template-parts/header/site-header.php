@@ -8,13 +8,8 @@
 defined( 'ABSPATH' ) || exit;
 
 $drbotax_announcement = trim( (string) drbotax_mod( 'header_announcement' ) );
-$drbotax_name         = get_bloginfo( 'name' );
-
-if ( '' === $drbotax_name ) {
-	$drbotax_name = 'Drbotax';
-}
-
-$drbotax_account_url = wp_login_url();
+$drbotax_name         = drbotax_site_name();
+$drbotax_account_url  = wp_login_url();
 
 if ( function_exists( 'wc_get_page_permalink' ) ) {
 	$drbotax_account = wc_get_page_permalink( 'myaccount' );
@@ -24,7 +19,6 @@ if ( function_exists( 'wc_get_page_permalink' ) ) {
 }
 
 $drbotax_cart_count = drbotax_cart_count();
-$drbotax_logo_src   = get_template_directory_uri() . '/assets/images/DrBotax-logo-full.png';
 ?>
 <header class="site-header">
 	<?php if ( '' !== $drbotax_announcement ) : ?>
@@ -39,9 +33,9 @@ $drbotax_logo_src   = get_template_directory_uri() . '/assets/images/DrBotax-log
 				<a class="site-header__logo-link" href="<?php echo esc_url( home_url( '/' ) ); ?>">
 					<img
 						class="site-header__logo"
-						src="<?php echo esc_url( $drbotax_logo_src ); ?>"
+						src="<?php echo esc_url( drbotax_default_logo_url() ); ?>"
 						alt="<?php echo esc_attr( $drbotax_name ); ?>"
-						width="240"
+						width="80"
 						height="80"
 						decoding="async"
 					>

@@ -19,10 +19,14 @@
   --content-width: 1120px;
   --product-columns: 4;
   --button-radius: 2px;
+  --radius-soft: 1.25rem;
+  --radius-panel: 1.75rem;
   --radius-pill: 999px;
   --menu-min-width: 12rem;
-  --header-logo-height: calc(var(--space-xl) * 2);
-  --header-logo-height-compact: var(--space-xl);
+  --header-logo-height: calc(var(--space-xl) + var(--space-s));
+  --header-logo-height-compact: calc(var(--space-l) + var(--space-xs));
+  --header-announcement-max-height: 3rem;
+  --header-nav-max-height: 5rem;
   --header-search-max: 28rem;
   --lift-distance: 4px;
   --rise-distance: 12px;
