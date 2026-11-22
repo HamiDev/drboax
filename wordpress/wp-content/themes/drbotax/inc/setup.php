@@ -8,6 +8,7 @@
 defined( 'ABSPATH' ) || exit;
 
 add_action( 'after_setup_theme', 'drbotax_setup' );
+add_action( 'wp', 'drbotax_cart_hooks' );
 add_filter( 'body_class', 'drbotax_body_class' );
 
 /**
@@ -55,6 +56,17 @@ function drbotax_setup() {
 }
 
 /**
+ * WooCommerce cart template hooks that only apply on the cart view.
+ */
+function drbotax_cart_hooks() {
+	if ( ! function_exists( 'is_cart' ) || ! is_cart() ) {
+		return;
+	}
+
+	remove_action( 'woocommerce_cart_is_empty', 'wc_empty_cart_message', 10 );
+}
+
+/**
  * Mark the storefront so theme styles can win over plugin styles.
  *
  * @param string[] $classes Body classes.
@@ -65,6 +77,10 @@ function drbotax_body_class( $classes ) {
 
 	if ( drbotax_is_account_login() ) {
 		$classes[] = 'drbotax-account-login';
+	}
+
+	if ( drbotax_is_cart_empty() ) {
+		$classes[] = 'drbotax-cart-empty';
 	}
 
 	return $classes;

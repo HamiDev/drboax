@@ -8,7 +8,8 @@
 defined( 'ABSPATH' ) || exit;
 ?>
 <?php
-$drbotax_hide_title = function_exists( 'is_account_page' ) && is_account_page() && ! is_user_logged_in();
+$drbotax_hide_title = ( function_exists( 'is_account_page' ) && is_account_page() && ! is_user_logged_in() )
+	|| drbotax_is_cart_empty();
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'entry' ); ?>>
 	<?php if ( ! $drbotax_hide_title ) : ?>

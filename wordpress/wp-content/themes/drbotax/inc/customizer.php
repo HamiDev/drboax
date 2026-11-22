@@ -17,6 +17,7 @@ require get_template_directory() . '/inc/customizer/spacing.php';
 require get_template_directory() . '/inc/customizer/social.php';
 require get_template_directory() . '/inc/customizer/homepage.php';
 require get_template_directory() . '/inc/customizer/account.php';
+require get_template_directory() . '/inc/customizer/cart.php';
 
 add_action( 'customize_register', 'drbotax_customize_register' );
 
@@ -36,6 +37,7 @@ function drbotax_customize_register( $wp_customize ) {
 	drbotax_customize_social( $wp_customize );
 	drbotax_customize_homepage( $wp_customize );
 	drbotax_customize_account( $wp_customize );
+	drbotax_customize_cart( $wp_customize );
 }
 
 /**

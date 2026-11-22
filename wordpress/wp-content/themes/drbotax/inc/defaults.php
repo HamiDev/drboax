@@ -57,13 +57,16 @@ function drbotax_get_content_defaults() {
 		'hero_button_label'   => __( 'Shop the edit', 'drbotax' ),
 		'hero_button_url'     => '',
 		'featured_heading'    => __( 'Selected for you', 'drbotax' ),
-		'login_title'         => '',
-		'login_text'          => __( 'Sign in to continue to your account.', 'drbotax' ),
-		'header_announcement' => '',
-		'footer_copyright'    => '',
-		'social_instagram'    => '',
-		'social_telegram'     => '',
-		'social_whatsapp'     => '',
+		'login_title'              => '',
+		'login_text'               => __( 'Sign in to continue to your account.', 'drbotax' ),
+		'empty_cart_title'         => __( 'Your cart is empty', 'drbotax' ),
+		'empty_cart_text'          => __( 'Browse the edit and bring something soft home.', 'drbotax' ),
+		'empty_cart_button_label'  => __( 'Continue shopping', 'drbotax' ),
+		'header_announcement'      => '',
+		'footer_copyright'         => '',
+		'social_instagram'         => '',
+		'social_telegram'          => '',
+		'social_whatsapp'          => '',
 	);
 }
 

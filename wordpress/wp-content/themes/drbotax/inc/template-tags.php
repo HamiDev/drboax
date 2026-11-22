@@ -172,6 +172,65 @@ function drbotax_get_featured_products() {
 }
 
 /**
+ * Whether the cart page is showing with no items.
+ *
+ * @return bool
+ */
+function drbotax_is_cart_empty() {
+	if ( ! function_exists( 'is_cart' ) || ! is_cart() ) {
+		return false;
+	}
+
+	if ( ! function_exists( 'WC' ) || ! WC()->cart ) {
+		return true;
+	}
+
+	return WC()->cart->is_empty();
+}
+
+/**
+ * Empty cart illustration URL.
+ *
+ * @return string
+ */
+function drbotax_empty_cart_image_url() {
+	$image_id = absint( get_theme_mod( 'drbotax_empty_cart_image', 0 ) );
+
+	if ( $image_id && wp_attachment_is_image( $image_id ) ) {
+		$url = wp_get_attachment_image_url( $image_id, 'full' );
+		if ( is_string( $url ) && '' !== $url ) {
+			return $url;
+		}
+	}
+
+	return get_template_directory_uri() . '/assets/images/empty-cart.png';
+}
+
+/**
+ * Shop destination for the empty cart CTA.
+ *
+ * @return string
+ */
+function drbotax_empty_cart_shop_url() {
+	$url = '';
+
+	if ( function_exists( 'wc_get_page_permalink' ) ) {
+		$shop = wc_get_page_permalink( 'shop' );
+		if ( is_string( $shop ) && '' !== $shop ) {
+			$url = $shop;
+		}
+	}
+
+	/**
+	 * Filter "Return To Shop" redirect URL.
+	 *
+	 * @since 4.6.0
+	 * @param string $default_url Default URL.
+	 */
+	return (string) apply_filters( 'woocommerce_return_to_shop_redirect', $url ? $url : home_url( '/' ) );
+}
+
+/**
  * Number of items currently in the cart.
  *
  * @return int
