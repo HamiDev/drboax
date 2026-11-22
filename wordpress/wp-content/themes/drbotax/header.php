@@ -17,4 +17,8 @@ defined( 'ABSPATH' ) || exit;
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <a class="skip-link" href="#main"><?php esc_html_e( 'Skip to content', 'drbotax' ); ?></a>
-<?php get_template_part( 'template-parts/header/site-header' ); ?>
+<?php
+if ( ! drbotax_is_account_login() ) {
+	get_template_part( 'template-parts/header/site-header' );
+}
+?>

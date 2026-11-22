@@ -13,8 +13,7 @@ if ( ! empty( $_POST['username'] ) && is_string( $_POST['username'] ) ) { // php
 	$drbotax_username = wp_unslash( $_POST['username'] ); // phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 }
 
-$drbotax_social = drbotax_login_social_providers();
-$drbotax_text   = trim( (string) drbotax_mod( 'login_text' ) );
+$drbotax_text = trim( (string) drbotax_mod( 'login_text' ) );
 ?>
 <section class="login-panel" aria-labelledby="drbotax-login-title">
 	<?php get_template_part( 'template-parts/account/login-brand' ); ?>
@@ -89,33 +88,6 @@ $drbotax_text   = trim( (string) drbotax_mod( 'login_text' ) );
 
 		<?php do_action( 'woocommerce_login_form_end' ); ?>
 	</form>
-
-	<?php if ( ! empty( $drbotax_social ) ) : ?>
-		<div class="login-social">
-			<p class="login-social__divider"><span><?php esc_html_e( 'Or sign in with social accounts', 'drbotax' ); ?></span></p>
-			<ul class="login-social__list">
-				<?php foreach ( $drbotax_social as $drbotax_provider ) : ?>
-					<li>
-						<?php if ( '' !== $drbotax_provider['url'] ) : ?>
-							<a class="login-social__button" href="<?php echo esc_url( $drbotax_provider['url'] ); ?>">
-								<?php if ( '' !== $drbotax_provider['icon'] ) : ?>
-									<span class="icon-<?php echo esc_attr( $drbotax_provider['icon'] ); ?>" aria-hidden="true"></span>
-								<?php endif; ?>
-								<span><?php echo esc_html( $drbotax_provider['label'] ); ?></span>
-							</a>
-						<?php else : ?>
-							<span class="login-social__button login-social__button--pending">
-								<?php if ( '' !== $drbotax_provider['icon'] ) : ?>
-									<span class="icon-<?php echo esc_attr( $drbotax_provider['icon'] ); ?>" aria-hidden="true"></span>
-								<?php endif; ?>
-								<span><?php echo esc_html( $drbotax_provider['label'] ); ?></span>
-							</span>
-						<?php endif; ?>
-					</li>
-				<?php endforeach; ?>
-			</ul>
-		</div>
-	<?php endif; ?>
 
 	<?php if ( 'yes' === get_option( 'woocommerce_enable_myaccount_registration' ) ) : ?>
 		<p class="login-panel__register">

@@ -63,7 +63,7 @@ function drbotax_setup() {
 function drbotax_body_class( $classes ) {
 	$classes[] = 'drbotax';
 
-	if ( function_exists( 'is_account_page' ) && is_account_page() && ! is_user_logged_in() ) {
+	if ( drbotax_is_account_login() ) {
 		$classes[] = 'drbotax-account-login';
 	}
 

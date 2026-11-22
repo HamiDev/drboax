@@ -17,6 +17,15 @@ function drbotax_default_logo_url() {
 }
 
 /**
+ * Whether the current view is the logged-out account login screen.
+ *
+ * @return bool
+ */
+function drbotax_is_account_login() {
+	return function_exists( 'is_account_page' ) && is_account_page() && ! is_user_logged_in();
+}
+
+/**
  * Login page background image URL.
  *
  * @return string
@@ -62,57 +71,6 @@ function drbotax_login_title() {
 		__( 'Welcome to %s', 'drbotax' ),
 		drbotax_site_name()
 	);
-}
-
-/**
- * Social sign-in providers for the login panel.
- *
- * Each item: label (string), icon (icon class without prefix), url (string).
- * Google and Telegram match the login layout; set a URL via the filter to enable them.
- *
- * @return array<int, array{label: string, icon: string, url: string}>
- */
-function drbotax_login_social_providers() {
-	$providers = apply_filters(
-		'drbotax_login_social_providers',
-		array(
-			array(
-				'label' => __( 'Google', 'drbotax' ),
-				'icon'  => 'GoogleLogo',
-				'url'   => '',
-			),
-			array(
-				'label' => __( 'Telegram', 'drbotax' ),
-				'icon'  => 'TelegramLogo',
-				'url'   => '',
-			),
-		)
-	);
-
-	if ( ! is_array( $providers ) ) {
-		return array();
-	}
-
-	$clean = array();
-
-	foreach ( $providers as $provider ) {
-		if ( ! is_array( $provider ) ) {
-			continue;
-		}
-
-		$label = isset( $provider['label'] ) ? sanitize_text_field( (string) $provider['label'] ) : '';
-		if ( '' === $label ) {
-			continue;
-		}
-
-		$clean[] = array(
-			'label' => $label,
-			'icon'  => isset( $provider['icon'] ) ? sanitize_html_class( (string) $provider['icon'] ) : '',
-			'url'   => isset( $provider['url'] ) ? esc_url_raw( (string) $provider['url'] ) : '',
-		);
-	}
-
-	return $clean;
 }
 
 /**

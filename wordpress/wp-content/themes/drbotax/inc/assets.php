@@ -64,7 +64,7 @@ function drbotax_enqueue_assets() {
  * Full-page login background for the logged-out account view.
  */
 function drbotax_enqueue_login_background() {
-	if ( ! function_exists( 'is_account_page' ) || ! is_account_page() || is_user_logged_in() ) {
+	if ( ! drbotax_is_account_login() ) {
 		return;
 	}
 
