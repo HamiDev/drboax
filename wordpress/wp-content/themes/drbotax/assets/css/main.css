@@ -1073,13 +1073,6 @@ a {
     transform: translateY(calc(var(--lift-distance) * -1));
     box-shadow: var(--shadow-lift);
   }
-  .site-header__bar {
-    transition: padding-block var(--duration-base) var(--ease-out);
-  }
-  .site-header__logo,
-  .custom-logo {
-    transition: max-height var(--duration-base) var(--ease-out);
-  }
   .drbotax a.button,
   .drbotax button.button,
   .primary-menu a,
