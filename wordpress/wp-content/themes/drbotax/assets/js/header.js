@@ -11,10 +11,12 @@
 	/**
 	 * Compacting the sticky header shortens the document and lowers scrollY.
 	 * Enter must sit above that height delta so the class cannot flip back.
+	 * Transitions are disabled while measuring so heights are final, not mid-animation.
 	 */
 	function measureThresholds() {
 		var previous = header.classList.contains( "is-scrolled" );
 
+		header.classList.add( "is-measuring" );
 		header.classList.remove( "is-scrolled" );
 		var fullHeight = header.offsetHeight;
 
@@ -22,6 +24,7 @@
 		var compactHeight = header.offsetHeight;
 
 		header.classList.toggle( "is-scrolled", previous );
+		header.classList.remove( "is-measuring" );
 
 		var delta = Math.max( 0, fullHeight - compactHeight );
 
