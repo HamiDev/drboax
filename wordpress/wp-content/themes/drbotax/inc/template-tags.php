@@ -26,6 +26,113 @@ function drbotax_is_account_login() {
 }
 
 /**
+ * Whether the current view is the logged-in My Account area.
+ *
+ * @return bool
+ */
+function drbotax_is_account() {
+	return function_exists( 'is_account_page' ) && is_account_page() && is_user_logged_in();
+}
+
+/**
+ * Whether a My Account nav item is the current page.
+ *
+ * WooCommerce misses the dashboard item when the account page is reached
+ * via a plain `pagename` query (no pretty permalinks).
+ *
+ * @param string $endpoint Account endpoint key.
+ * @return bool
+ */
+function drbotax_is_current_account_menu_item( $endpoint ) {
+	$endpoint = sanitize_key( (string) $endpoint );
+
+	if ( function_exists( 'wc_is_current_account_menu_item' ) && wc_is_current_account_menu_item( $endpoint ) ) {
+		return true;
+	}
+
+	if ( 'dashboard' !== $endpoint || ! function_exists( 'is_account_page' ) || ! is_account_page() ) {
+		return false;
+	}
+
+	global $wp;
+
+	$menu_items = function_exists( 'wc_get_account_menu_items' ) ? wc_get_account_menu_items() : array();
+	unset( $menu_items['dashboard'] );
+
+	foreach ( array_keys( $menu_items ) as $item ) {
+		if ( isset( $wp->query_vars[ $item ] ) ) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
+/**
+ * Icon class stem for a My Account menu endpoint.
+ *
+ * @param string $endpoint Account endpoint key.
+ * @return string Phosphor icon name without the icon- prefix.
+ */
+function drbotax_account_menu_icon( $endpoint ) {
+	$icons = array(
+		'dashboard'         => 'SquaresFour',
+		'orders'            => 'Package',
+		'downloads'         => 'Download',
+		'edit-address'      => 'MapPin',
+		'payment-methods'   => 'CreditCard',
+		'edit-account'      => 'User',
+		'customer-logout'   => 'SignOut',
+	);
+
+	$endpoint = sanitize_key( (string) $endpoint );
+
+	return isset( $icons[ $endpoint ] ) ? $icons[ $endpoint ] : 'SquaresFour';
+}
+
+/**
+ * Quick links shown on the account dashboard.
+ *
+ * @return array<int, array{endpoint: string, icon: string, title: string, text: string, url: string}>
+ */
+function drbotax_account_dashboard_links() {
+	if ( ! function_exists( 'wc_get_account_menu_items' ) ) {
+		return array();
+	}
+
+	$menu     = wc_get_account_menu_items();
+	$shipping = function_exists( 'wc_shipping_enabled' ) && wc_shipping_enabled();
+
+	$cards = array(
+		array(
+			'endpoint' => 'orders',
+			'icon'     => 'Package',
+			'title'    => isset( $menu['orders'] ) ? $menu['orders'] : __( 'Orders', 'drbotax' ),
+			'text'     => __( 'View and track recent orders', 'drbotax' ),
+			'url'      => wc_get_account_endpoint_url( 'orders' ),
+		),
+		array(
+			'endpoint' => 'edit-address',
+			'icon'     => 'MapPin',
+			'title'    => isset( $menu['edit-address'] ) ? $menu['edit-address'] : __( 'Addresses', 'drbotax' ),
+			'text'     => $shipping
+				? __( 'Manage shipping and billing addresses', 'drbotax' )
+				: __( 'Manage your billing address', 'drbotax' ),
+			'url'      => wc_get_account_endpoint_url( 'edit-address' ),
+		),
+		array(
+			'endpoint' => 'edit-account',
+			'icon'     => 'User',
+			'title'    => isset( $menu['edit-account'] ) ? $menu['edit-account'] : __( 'Account details', 'drbotax' ),
+			'text'     => __( 'Update profile and password', 'drbotax' ),
+			'url'      => wc_get_account_endpoint_url( 'edit-account' ),
+		),
+	);
+
+	return $cards;
+}
+
+/**
  * Login page background image URL.
  *
  * @return string

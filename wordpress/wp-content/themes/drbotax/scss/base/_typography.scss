@@ -66,12 +66,12 @@ b {
   margin-block-start: var(--space-s);
 }
 
-.entry__content ul:not(.woocommerce-error, .woocommerce-message, .woocommerce-info),
+.entry__content ul:not(.woocommerce-error, .woocommerce-message, .woocommerce-info, .account-nav__list),
 .entry__content ol {
   padding-inline-start: var(--space-m);
 }
 
-.entry__content ul:not(.woocommerce-error, .woocommerce-message, .woocommerce-info) {
+.entry__content ul:not(.woocommerce-error, .woocommerce-message, .woocommerce-info, .account-nav__list) {
   list-style: disc;
 }
 

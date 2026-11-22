@@ -10,6 +10,7 @@ defined( 'ABSPATH' ) || exit;
 add_action( 'after_setup_theme', 'drbotax_setup' );
 add_action( 'wp', 'drbotax_cart_hooks' );
 add_filter( 'body_class', 'drbotax_body_class' );
+add_filter( 'woocommerce_account_menu_item_classes', 'drbotax_account_menu_item_classes', 10, 2 );
 
 /**
  * Register supports, menus, and the text domain.
@@ -79,8 +80,31 @@ function drbotax_body_class( $classes ) {
 		$classes[] = 'drbotax-account-login';
 	}
 
+	if ( drbotax_is_account() ) {
+		$classes[] = 'drbotax-account';
+	}
+
 	if ( drbotax_is_cart_empty() ) {
 		$classes[] = 'drbotax-cart-empty';
+	}
+
+	return $classes;
+}
+
+/**
+ * Ensure the current My Account nav item gets the active class.
+ *
+ * @param string[] $classes  Menu item classes.
+ * @param string   $endpoint Account endpoint key.
+ * @return string[]
+ */
+function drbotax_account_menu_item_classes( $classes, $endpoint ) {
+	if ( ! is_array( $classes ) ) {
+		$classes = array();
+	}
+
+	if ( drbotax_is_current_account_menu_item( $endpoint ) && ! in_array( 'is-active', $classes, true ) ) {
+		$classes[] = 'is-active';
 	}
 
 	return $classes;
