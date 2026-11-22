@@ -9,7 +9,8 @@ defined( 'ABSPATH' ) || exit;
 
 $drbotax_announcement = trim( (string) drbotax_mod( 'header_announcement' ) );
 $drbotax_name         = drbotax_site_name();
-$drbotax_account_url  = wp_login_url();
+$drbotax_logged_in    = is_user_logged_in();
+$drbotax_account_url  = '';
 
 if ( function_exists( 'wc_get_page_permalink' ) ) {
 	$drbotax_account = wc_get_page_permalink( 'myaccount' );
@@ -18,7 +19,14 @@ if ( function_exists( 'wc_get_page_permalink' ) ) {
 	}
 }
 
-$drbotax_cart_count = drbotax_cart_count();
+if ( '' === $drbotax_account_url ) {
+	$drbotax_account_url = $drbotax_logged_in ? home_url( '/' ) : wp_login_url();
+}
+
+$drbotax_account_label = $drbotax_logged_in
+	? __( 'Account', 'drbotax' )
+	: __( 'Log in', 'drbotax' );
+$drbotax_cart_count    = drbotax_cart_count();
 ?>
 <header class="site-header">
 	<?php if ( '' !== $drbotax_announcement ) : ?>
@@ -49,7 +57,7 @@ $drbotax_cart_count = drbotax_cart_count();
 			<a
 				class="site-header__account"
 				href="<?php echo esc_url( $drbotax_account_url ); ?>"
-				aria-label="<?php esc_attr_e( 'Account', 'drbotax' ); ?>"
+				aria-label="<?php echo esc_attr( $drbotax_account_label ); ?>"
 			>
 				<span class="icon-User" aria-hidden="true"></span>
 			</a>

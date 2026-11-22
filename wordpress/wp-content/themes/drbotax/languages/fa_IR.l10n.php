@@ -51,6 +51,7 @@ return array(
 		'Leave empty to use the year and site name.' => 'برای استفاده از سال و نام سایت، خالی بگذارید.',
 		'Leave empty to welcome the shopper by site name.' => 'برای خوش‌آمدگویی با نام سایت، خالی بگذارید.',
 		'Line'                         => 'خط',
+		'Log in'                       => 'ورود',
 		'Log in to your account'       => 'ورود به حساب کاربری',
 		'Login image'                  => 'تصویر ورود',
 		'Login text'                   => 'متن ورود',
