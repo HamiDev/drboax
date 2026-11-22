@@ -24,6 +24,8 @@
 		var compactHeight = header.offsetHeight;
 
 		header.classList.toggle( "is-scrolled", previous );
+		// Flush layout while transitions are still off.
+		void header.offsetHeight;
 		header.classList.remove( "is-measuring" );
 
 		var delta = Math.max( 0, fullHeight - compactHeight );
@@ -46,6 +48,20 @@
 			header.classList.remove( "is-scrolled" );
 			isScrolled = false;
 		}
+	}
+
+	/**
+	 * Enable size transitions only after the initial scrolled state has painted,
+	 * so refresh does not animate the logo from compact to full.
+	 */
+	function enableReadyMotion() {
+		window.requestAnimationFrame( function () {
+			window.requestAnimationFrame( function () {
+				if ( header ) {
+					header.classList.add( "is-ready" );
+				}
+			} );
+		} );
 	}
 
 	function onScroll() {
@@ -75,6 +91,7 @@
 		measureThresholds();
 		isScrolled = header.classList.contains( "is-scrolled" );
 		setScrolledState();
+		enableReadyMotion();
 
 		window.addEventListener( "scroll", onScroll, { passive: true } );
 		window.addEventListener( "resize", onResize, { passive: true } );
