@@ -24,15 +24,39 @@ a {
   padding-block-start: var(--space-m);
 }
 
-.woocommerce-message,
-.woocommerce-info,
-.woocommerce-error {
-  padding: var(--space-s) var(--space-m);
+ul.woocommerce-message,
+ul.woocommerce-info,
+ul.woocommerce-error {
+  position: relative;
+  margin-block: 0 var(--space-m);
+  padding-block: var(--space-s);
+  padding-inline-start: calc(var(--space-l) + var(--space-s));
+  padding-inline-end: var(--space-m);
   border: var(--line-width) solid var(--color-line);
+  border-radius: var(--radius-soft);
   background: color-mix(in srgb, var(--color-gold) 16%, var(--color-paper));
+  list-style: none;
+
+  &::before {
+    top: 50%;
+    left: auto;
+    right: auto;
+    inset-inline-start: var(--space-s);
+    width: 1.25rem;
+    transform: translateY(-50%);
+    font-size: 1.125rem;
+    line-height: 1;
+    text-align: center;
+  }
+
+  li {
+    padding-inline: 0;
+    margin-inline: 0;
+    list-style: none;
+  }
 }
 
-.woocommerce-error {
+ul.woocommerce-error {
   border-color: var(--color-accent);
 }
 
