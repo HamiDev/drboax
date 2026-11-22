@@ -57,7 +57,9 @@
   justify-items: center;
   width: 100%;
   min-height: 100dvh;
+  padding-inline: var(--space-m);
   overflow: visible;
+  box-sizing: border-box;
 }
 
 .login-shell__forms {
@@ -65,7 +67,7 @@
   gap: var(--space-l);
   width: min(100%, 26rem);
   margin-block: var(--space-xl);
-  margin-inline: var(--space-m);
+  margin-inline: 0;
   padding: 0;
 }
 
@@ -243,8 +245,8 @@
     justify-items: right;
   }
 
-  .login-shell__forms {
-    margin-inline: var(--space-l);
+  .login-shell {
+    padding-inline: var(--space-l);
   }
 
   .login-panel {
