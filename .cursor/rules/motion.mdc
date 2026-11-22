@@ -1,0 +1,42 @@
+---
+description: CSS motion for the Drbotax storefront
+globs: "**/*.scss"
+alwaysApply: false
+---
+
+# Motion
+
+Animate with CSS in `utilities/_motion.scss` and the component partial that owns the element. Reach for JavaScript only when CSS cannot express the interaction.
+
+Use `transform` and `opacity`. Duration tokens: `--duration-fast: 180ms`, `--duration-base: 280ms`, `--duration-slow: 560ms`. Easing: `--ease-out: cubic-bezier(0.22, 1, 0.36, 1)`.
+
+- Cards lift `4px` and deepen the shadow on hover.
+- Buttons transition color and shadow. No bounce, elastic, or infinite loops.
+- Drawers and the mini cart slide with `translateX` or `translateY`.
+- Hero and product-grid entrance can stagger, capped at six children.
+- `scroll-behavior: smooth` applies only when the shopper allows motion.
+
+```scss
+@media (prefers-reduced-motion: no-preference) {
+  .product-card {
+    transition:
+      transform var(--duration-base) var(--ease-out),
+      box-shadow var(--duration-base) var(--ease-out);
+
+    &:hover {
+      transform: translateY(-4px);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+```

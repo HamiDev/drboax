@@ -1,0 +1,36 @@
+---
+description: WordPress PHP standards for the Drbotax theme
+globs: "**/*.php"
+alwaysApply: false
+---
+
+# WordPress PHP
+
+Follow WordPress Coding Standards. Indent PHP with tabs. Prefix functions, hooks, and options with `drbotax_`.
+
+## Data in, data out
+
+Sanitize input with `sanitize_text_field()`, `sanitize_email()`, or `esc_url_raw()`. Escape output with `esc_html()`, `esc_attr()`, `esc_url()`, or `wp_kses_post()`. Unslash superglobals before sanitizing. Verify a nonce on every form.
+
+```php
+check_admin_referer( 'drbotax_save_settings' );
+
+$email = isset( $_POST['email'] ) ? sanitize_email( wp_unslash( $_POST['email'] ) ) : '';
+
+printf(
+	'<a href="%1$s">%2$s</a>',
+	esc_url( 'mailto:' . $email ),
+	esc_html( $email )
+);
+```
+
+## WordPress APIs
+
+- Load assets with `wp_enqueue_style()` and `wp_enqueue_script()`. Scripts load in the footer.
+- Query posts and products with `WP_Query` or `wc_get_products()`. Write SQL only when those APIs cannot express the query, and then use `$wpdb->prepare()`.
+- Translate shopper-facing strings with the `drbotax` text domain.
+- Read presentation settings with `get_theme_mod()`. Seed defaults in the Customizer and in `abstracts/_colors.scss`.
+
+```php
+$accent = get_theme_mod( 'drbotax_color_accent', '#8c3d4e' );
+```

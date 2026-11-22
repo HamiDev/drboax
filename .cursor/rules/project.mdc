@@ -1,0 +1,27 @@
+---
+description: Drbotax shop context, stack, and theme boundaries
+alwaysApply: true
+---
+
+# Drbotax
+
+Drbotax is a WooCommerce shop for beauty and cosmetic products. The storefront is a custom theme at `wordpress/wp-content/themes/drbotax`. Text domain and function prefix: `drbotax`.
+
+## Stack
+
+- Docker Compose runs WordPress (`wordpress:7.1.5-php8.4-apache`), MySQL 8.4, and phpMyAdmin.
+- Shop: `http://localhost:8080`. Database UI: `http://localhost:8081`.
+- Secrets live in `.env`. Commit `.env.example` only.
+
+## Product
+
+- The shop is product-first: large photography, quiet type, generous space, and a short path from product to cart.
+- Declare WooCommerce support. Use WooCommerce hooks and `woocommerce/` template overrides for catalog, product, cart, checkout, and account.
+- Beauty retail tone: calm and precise. Shade, size, price, and availability stay obvious.
+
+## Boundaries
+
+- Change the theme only. Leave WordPress core, plugins, and uploads outside `wp-content/themes/drbotax` untouched.
+- Put color, typography, buttons, header, footer, layout, spacing, logo, and social links in the Theme Customizer. Components read those values. Do not hardcode them.
+- One function, one SCSS partial, and one template part each do one job.
+- Motion is CSS. See the SCSS and motion rules.

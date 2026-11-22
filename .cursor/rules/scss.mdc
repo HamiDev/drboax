@@ -1,0 +1,40 @@
+---
+description: SCSS architecture, tokens, and Customizer-driven color
+globs: "**/*.scss"
+alwaysApply: false
+---
+
+# SCSS
+
+Use the modern Sass module system: `@use` and `@forward`. Never use `@import`.
+
+Entry file: `scss/styles.scss`. Compile it with Dart Sass to `assets/css/main.css` and commit the CSS. `style.css` stays the WordPress theme header. PHP enqueues `assets/css/main.css`.
+
+```
+scss/
+  abstracts/   _variables.scss _colors.scss _mixins.scss _functions.scss _breakpoints.scss
+  base/        _reset.scss _typography.scss _global.scss
+  layout/      _header.scss _footer.scss _grid.scss
+  components/  _button.scss _card.scss _form.scss _hero.scss _navigation.scss
+  pages/       _home.scss _single.scss _archive.scss
+  utilities/   _helpers.scss _spacing.scss _motion.scss
+  styles.scss
+```
+
+One component per partial. Add `_product.scss`, `_cart.scss`, and `_checkout.scss` when those views are built.
+
+## Tokens
+
+Components consume custom properties. They do not contain raw hex, font names, or spacing literals. Defaults live in `abstracts/`. The Customizer overrides the properties at runtime.
+
+```scss
+@use "../abstracts/colors" as colors;
+
+.button {
+  background: var(--color-accent);
+  color: var(--color-paper);
+  padding: var(--space-s) var(--space-m);
+}
+```
+
+Default palette, replaced when the Customizer is set: ink `#241816`, paper `#faf6f3`, accent `#8c3d4e`, gold `#a68456`, line `#eadfd6`. Headings use a serif, UI a sans-serif, both stored as custom properties. Enqueue webfonts from PHP.

@@ -1,0 +1,21 @@
+---
+description: Theme template structure and semantic markup
+globs: wordpress/wp-content/themes/drbotax/**/*.php
+alwaysApply: false
+---
+
+# Templates
+
+Page templates compose sections. They do not contain large HTML blocks. Put each section in `template-parts/`.
+
+```php
+get_header();
+get_template_part( 'template-parts/home/hero' );
+get_template_part( 'template-parts/home/featured-products' );
+get_footer();
+```
+
+- Use semantic HTML5: `header`, `nav`, `main`, `article`, `section`, `footer`, and `button` for actions.
+- WooCommerce overrides live in `woocommerce/` and change only the markup the design requires.
+- Product images need descriptive `alt` text. Interactive controls need a visible `:focus-visible` style.
+- One template part renders one region (hero, product card, mini cart, footer). Share the product card between the catalog and the homepage.
