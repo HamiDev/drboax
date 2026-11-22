@@ -32,6 +32,7 @@ function drbotax_css_variables() {
 		'--color-accent'    => drbotax_color_value( 'color_accent' ),
 		'--color-gold'      => drbotax_color_value( 'color_gold' ),
 		'--color-line'      => drbotax_color_value( 'color_line' ),
+		'--color-surface'  => drbotax_color_value( 'color_surface' ),
 		'--font-main'       => drbotax_css_font_stack( drbotax_font_value( 'font_main' ) ),
 		'--font-size-base'  => drbotax_choice_value( 'font_size_base' ),
 		'--button-radius'   => drbotax_choice_value( 'button_radius' ),

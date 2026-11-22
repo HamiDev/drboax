@@ -26,4 +26,5 @@ function drbotax_customize_colors( $wp_customize ) {
 	drbotax_register_color( $wp_customize, 'color_accent', __( 'Accent', 'drbotax' ), 'drbotax_colors' );
 	drbotax_register_color( $wp_customize, 'color_gold', __( 'Gold', 'drbotax' ), 'drbotax_colors' );
 	drbotax_register_color( $wp_customize, 'color_line', __( 'Line', 'drbotax' ), 'drbotax_colors' );
+	drbotax_register_color( $wp_customize, 'color_surface', __( 'Surface', 'drbotax' ), 'drbotax_colors' );
 }

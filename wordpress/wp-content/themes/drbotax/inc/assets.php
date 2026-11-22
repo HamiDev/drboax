@@ -38,6 +38,8 @@ function drbotax_enqueue_assets() {
 		file_exists( $path ) ? (string) filemtime( $path ) : '0.1.0'
 	);
 
+	drbotax_enqueue_login_background();
+
 	$header_script = get_template_directory() . '/assets/js/header.js';
 	$mega_script   = get_template_directory() . '/assets/js/mega-menu.js';
 
@@ -55,6 +57,29 @@ function drbotax_enqueue_assets() {
 		array(),
 		file_exists( $mega_script ) ? (string) filemtime( $mega_script ) : '0.1.0',
 		true
+	);
+}
+
+/**
+ * Full-page login background for the logged-out account view.
+ */
+function drbotax_enqueue_login_background() {
+	if ( ! function_exists( 'is_account_page' ) || ! is_account_page() || is_user_logged_in() ) {
+		return;
+	}
+
+	if ( ! wp_style_is( 'drbotax-main', 'enqueued' ) ) {
+		return;
+	}
+
+	$url = esc_url_raw( drbotax_login_image_url() );
+	if ( '' === $url ) {
+		return;
+	}
+
+	wp_add_inline_style(
+		'drbotax-main',
+		'body.drbotax-account-login{--login-bg-image:url("' . esc_url( $url ) . '")}'
 	);
 }
 

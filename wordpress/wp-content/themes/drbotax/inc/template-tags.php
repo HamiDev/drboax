@@ -8,6 +8,114 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
+ * Default full logo URL when no Customizer logo is set.
+ *
+ * @return string
+ */
+function drbotax_default_logo_url() {
+	return get_template_directory_uri() . '/assets/images/DrBotax-logo-full.png';
+}
+
+/**
+ * Login page background image URL.
+ *
+ * @return string
+ */
+function drbotax_login_image_url() {
+	$image_id = absint( get_theme_mod( 'drbotax_login_image', 0 ) );
+
+	if ( $image_id && wp_attachment_is_image( $image_id ) ) {
+		$url = wp_get_attachment_image_url( $image_id, 'full' );
+		if ( is_string( $url ) && '' !== $url ) {
+			return $url;
+		}
+	}
+
+	return get_template_directory_uri() . '/assets/images/login-visual.jpg';
+}
+
+/**
+ * Site name with a stable fallback for empty blog names.
+ *
+ * @return string
+ */
+function drbotax_site_name() {
+	$name = get_bloginfo( 'name' );
+
+	return '' !== $name ? $name : 'Drbotax';
+}
+
+/**
+ * Login panel heading. Empty Customizer title welcomes by site name.
+ *
+ * @return string
+ */
+function drbotax_login_title() {
+	$title = trim( (string) drbotax_mod( 'login_title' ) );
+
+	if ( '' !== $title ) {
+		return $title;
+	}
+
+	return sprintf(
+		/* translators: %s: site name. */
+		__( 'Welcome to %s', 'drbotax' ),
+		drbotax_site_name()
+	);
+}
+
+/**
+ * Social sign-in providers for the login panel.
+ *
+ * Each item: label (string), icon (icon class without prefix), url (string).
+ * Google and Telegram match the login layout; set a URL via the filter to enable them.
+ *
+ * @return array<int, array{label: string, icon: string, url: string}>
+ */
+function drbotax_login_social_providers() {
+	$providers = apply_filters(
+		'drbotax_login_social_providers',
+		array(
+			array(
+				'label' => __( 'Google', 'drbotax' ),
+				'icon'  => 'GoogleLogo',
+				'url'   => '',
+			),
+			array(
+				'label' => __( 'Telegram', 'drbotax' ),
+				'icon'  => 'TelegramLogo',
+				'url'   => '',
+			),
+		)
+	);
+
+	if ( ! is_array( $providers ) ) {
+		return array();
+	}
+
+	$clean = array();
+
+	foreach ( $providers as $provider ) {
+		if ( ! is_array( $provider ) ) {
+			continue;
+		}
+
+		$label = isset( $provider['label'] ) ? sanitize_text_field( (string) $provider['label'] ) : '';
+		if ( '' === $label ) {
+			continue;
+		}
+
+		$clean[] = array(
+			'label' => $label,
+			'icon'  => isset( $provider['icon'] ) ? sanitize_html_class( (string) $provider['icon'] ) : '',
+			'url'   => isset( $provider['url'] ) ? esc_url_raw( (string) $provider['url'] ) : '',
+		);
+	}
+
+	return $clean;
+}
+
+/**
  * Hero button destination. An empty Customizer URL points at the shop.
  *
  * @return string

@@ -5,7 +5,10 @@
   --color-gold: #a68456;
   --color-line: #eadfd6;
   --color-muted: color-mix(in srgb, var(--color-ink) 64%, var(--color-paper));
+  --color-blush: color-mix(in srgb, var(--color-accent) 16%, var(--color-surface));
+  --color-surface: #ffffff;
   --shadow-rest: 0 0 0 transparent;
+  --shadow-soft: 0 16px 40px color-mix(in srgb, var(--color-ink) 8%, transparent);
   --shadow-lift: 0 12px 28px color-mix(in srgb, var(--color-ink) 10%, transparent);
   --line-width: 1px;
   --focus-width: 2px;
