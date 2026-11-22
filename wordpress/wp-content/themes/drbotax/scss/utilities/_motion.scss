@@ -112,6 +112,7 @@
   .drbotax button.button:hover {
     background: color-mix(in srgb, var(--color-ink) 18%, var(--color-accent));
     box-shadow: var(--shadow-lift);
+    color: var(--color-paper);
   }
 
   .drbotax a.button--quiet:hover,
