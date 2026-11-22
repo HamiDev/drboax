@@ -13,13 +13,15 @@ $drbotax_name = drbotax_site_name();
 	<?php if ( has_custom_logo() ) : ?>
 		<?php the_custom_logo(); ?>
 	<?php else : ?>
-		<img
-			class="login-panel__logo"
-			src="<?php echo esc_url( drbotax_default_logo_url() ); ?>"
-			alt="<?php echo esc_attr( $drbotax_name ); ?>"
-			width="200"
-			height="67"
-			decoding="async"
-		>
+		<a class="login-panel__logo-link" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+			<img
+				class="login-panel__logo"
+				src="<?php echo esc_url( drbotax_default_logo_url() ); ?>"
+				alt="<?php echo esc_attr( $drbotax_name ); ?>"
+				width="200"
+				height="67"
+				decoding="async"
+			>
+		</a>
 	<?php endif; ?>
 </div>
