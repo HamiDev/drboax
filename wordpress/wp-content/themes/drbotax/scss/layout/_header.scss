@@ -28,12 +28,15 @@
     "search search";
   align-items: center;
   gap: var(--space-m);
-  padding-block: var(--space-m) var(--space-s);
+  padding-block: var(--space-xs);
 }
 
 .site-header__brand {
   grid-area: brand;
+  display: flex;
+  align-items: center;
   min-width: 0;
+  line-height: 0;
 }
 
 .site-header__logo-link,
@@ -144,7 +147,7 @@
 }
 
 .site-header__nav {
-  padding-block-end: var(--space-m);
+  padding-block-end: var(--space-s);
 }
 
 .site-header.is-scrolled .site-header__announcement {
@@ -155,7 +158,7 @@
 }
 
 .site-header.is-scrolled .site-header__bar {
-  padding-block: var(--space-s);
+  padding-block: var(--space-xs);
 }
 
 .site-header.is-scrolled .site-header__logo,
@@ -173,7 +176,7 @@
     grid-template-columns: auto minmax(0, 1fr) auto;
     grid-template-areas: "brand search actions";
     gap: var(--space-l);
-    padding-block: var(--space-l) var(--space-m);
+    padding-block: var(--space-xs);
   }
 
   .site-header__search {
@@ -190,7 +193,7 @@
   }
 
   .site-header.is-scrolled .site-header__bar {
-    padding-block: var(--space-s);
+    padding-block: var(--space-xs);
   }
 
   .site-header.is-scrolled .site-header__nav {
