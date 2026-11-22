@@ -1,0 +1,41 @@
+@use "../abstracts/breakpoints" as bp;
+
+.site-footer {
+  border-block-start: var(--line-width) solid var(--color-line);
+  padding-block: var(--space-xl);
+}
+
+.site-footer__inner {
+  display: grid;
+  gap: var(--space-l);
+}
+
+.site-footer__copyright {
+  margin-block-start: var(--space-xs);
+  color: var(--color-muted);
+  font-size: var(--font-size-small);
+}
+
+.footer-menu {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.footer-menu a,
+.social-links a {
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.social-links__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s) var(--space-m);
+}
+
+@include bp.wide {
+  .site-footer__inner {
+    grid-template-columns: repeat(auto-fit, minmax(var(--menu-min-width), 1fr));
+    align-items: start;
+  }
+}

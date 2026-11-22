@@ -1,0 +1,24 @@
+.skip-link {
+  position: absolute;
+  z-index: var(--z-skip);
+  inset-block-start: var(--space-s);
+  inset-inline-start: var(--space-s);
+  padding: var(--space-xs) var(--space-s);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  text-decoration: none;
+  transform: translateY(calc(var(--space-2xl) * -1));
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.screen-reader-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

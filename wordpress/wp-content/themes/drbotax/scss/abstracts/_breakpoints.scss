@@ -1,0 +1,14 @@
+$narrow: 40rem;
+$wide: 64rem;
+
+@mixin narrow {
+  @media (min-width: $narrow) {
+    @content;
+  }
+}
+
+@mixin wide {
+  @media (min-width: $wide) {
+    @content;
+  }
+}

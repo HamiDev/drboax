@@ -1,0 +1,13 @@
+:root {
+  --color-ink: #241816;
+  --color-paper: #faf6f3;
+  --color-accent: #8c3d4e;
+  --color-gold: #a68456;
+  --color-line: #eadfd6;
+  --color-muted: color-mix(in srgb, var(--color-ink) 64%, var(--color-paper));
+  --shadow-rest: 0 0 0 transparent;
+  --shadow-lift: 0 12px 28px color-mix(in srgb, var(--color-ink) 10%, transparent);
+  --line-width: 1px;
+  --focus-width: 2px;
+  --focus-offset: 3px;
+}

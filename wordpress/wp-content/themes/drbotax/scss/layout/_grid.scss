@@ -1,0 +1,29 @@
+@use "../abstracts/breakpoints" as bp;
+
+.wrap {
+  width: min(calc(100% - var(--space-l) * 2), var(--content-width));
+  margin-inline: auto;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-l);
+}
+
+.product-grid > li {
+  display: flex;
+  min-width: 0;
+}
+
+@include bp.narrow {
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@include bp.wide {
+  .product-grid {
+    grid-template-columns: repeat(var(--product-columns), minmax(0, 1fr));
+  }
+}

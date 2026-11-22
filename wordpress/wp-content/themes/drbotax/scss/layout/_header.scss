@@ -1,0 +1,84 @@
+@use "../abstracts/breakpoints" as bp;
+
+.site-header {
+  border-block-end: var(--line-width) solid var(--color-line);
+}
+
+.site-header__announcement {
+  margin: 0;
+  padding-block: var(--space-xs);
+  padding-inline: var(--space-m);
+  background: color-mix(in srgb, var(--color-gold) 18%, var(--color-paper));
+  text-align: center;
+}
+
+.site-header__bar {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-areas:
+    "brand actions"
+    "nav nav";
+  align-items: center;
+  gap: var(--space-s) var(--space-m);
+  padding-block: var(--space-m);
+}
+
+.site-header__brand {
+  grid-area: brand;
+  min-width: 0;
+}
+
+.site-header .site-title {
+  white-space: nowrap;
+}
+
+.site-header__actions {
+  grid-area: actions;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  justify-self: end;
+  gap: var(--space-s) var(--space-m);
+  min-width: 0;
+}
+
+.site-header__actions a {
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.site-header__cart {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.site-header__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5em;
+  padding-inline: var(--space-2xs);
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+  color: var(--color-paper);
+  font-size: var(--font-size-small);
+  line-height: 1.5;
+}
+
+.custom-logo-link {
+  display: inline-block;
+}
+
+.custom-logo {
+  width: auto;
+  max-height: var(--space-xl);
+}
+
+@include bp.wide {
+  .site-header__bar {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas: "brand nav actions";
+  }
+}

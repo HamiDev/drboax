@@ -1,0 +1,26 @@
+.drbotax a.button,
+.drbotax button.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  margin: 0;
+  border: var(--line-width) solid var(--color-accent);
+  border-radius: var(--button-radius);
+  padding: var(--space-s) var(--space-m);
+  background: var(--color-accent);
+  color: var(--color-paper);
+  font-family: var(--font-main);
+  font-size: var(--font-size-small);
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.drbotax a.button--quiet,
+.drbotax button.button--quiet {
+  border-color: transparent;
+  padding-inline: 0;
+  background: transparent;
+  color: var(--color-accent);
+}

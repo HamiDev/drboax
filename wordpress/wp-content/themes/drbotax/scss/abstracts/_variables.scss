@@ -1,0 +1,33 @@
+:root {
+  --font-main: "Vazirmatn", "Tahoma", sans-serif;
+  --font-size-base: 1.125rem;
+  --font-size-small: 0.875rem;
+  --font-size-brand: 1.75rem;
+  --font-size-card: 1.35rem;
+  --font-size-title: clamp(1.75rem, 3vw, 2.5rem);
+  --font-size-display: clamp(2.5rem, 6vw, 4.5rem);
+  --line-height-body: 1.7;
+  --line-height-heading: 1.15;
+  --space-unit: 0.5rem;
+  --space-2xs: calc(var(--space-unit) * 0.5);
+  --space-xs: var(--space-unit);
+  --space-s: calc(var(--space-unit) * 2);
+  --space-m: calc(var(--space-unit) * 3);
+  --space-l: calc(var(--space-unit) * 5);
+  --space-xl: calc(var(--space-unit) * 8);
+  --space-2xl: calc(var(--space-unit) * 13);
+  --content-width: 1120px;
+  --product-columns: 4;
+  --button-radius: 2px;
+  --radius-pill: 999px;
+  --menu-min-width: 12rem;
+  --lift-distance: 4px;
+  --rise-distance: 12px;
+  --duration-fast: 180ms;
+  --duration-base: 280ms;
+  --duration-slow: 560ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --stagger-step: 80ms;
+  --z-menu: 2;
+  --z-skip: 20;
+}

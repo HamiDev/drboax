@@ -1,0 +1,13 @@
+.site-main input[type="text"],
+.site-main input[type="email"],
+.site-main input[type="search"],
+.site-main input[type="url"],
+.site-main input[type="number"],
+.site-main textarea,
+.site-main select {
+  width: 100%;
+  border: var(--line-width) solid var(--color-line);
+  border-radius: var(--button-radius);
+  padding: var(--space-xs) var(--space-s);
+  background: var(--color-paper);
+}

@@ -1,0 +1,53 @@
+a {
+  color: var(--color-accent);
+}
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: var(--focus-width) solid var(--color-accent);
+  outline-offset: var(--focus-offset);
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-gold) 45%, var(--color-paper));
+  color: var(--color-ink);
+}
+
+.site-main {
+  padding-block: var(--space-xl);
+}
+
+.store-notices {
+  padding-block-start: var(--space-m);
+}
+
+.woocommerce-message,
+.woocommerce-info,
+.woocommerce-error {
+  padding: var(--space-s) var(--space-m);
+  border: var(--line-width) solid var(--color-line);
+  background: color-mix(in srgb, var(--color-gold) 16%, var(--color-paper));
+}
+
+.woocommerce-error {
+  border-color: var(--color-accent);
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s);
+  margin-block-start: var(--space-xl);
+}
+
+.page-numbers {
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.page-numbers.current {
+  color: var(--color-accent);
+}

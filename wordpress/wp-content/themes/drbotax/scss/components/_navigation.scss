@@ -1,0 +1,76 @@
+@use "../abstracts/breakpoints" as bp;
+
+.primary-nav {
+  grid-area: nav;
+}
+
+.primary-nav__toggle {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  color: var(--color-ink);
+  cursor: pointer;
+}
+
+.primary-nav__toggle::-webkit-details-marker {
+  display: none;
+}
+
+.primary-menu a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.primary-nav details:not([open]) .primary-menu {
+  display: none;
+}
+
+.primary-nav details[open] .primary-menu {
+  display: grid;
+}
+
+.primary-menu .sub-menu {
+  display: grid;
+  gap: var(--space-2xs);
+  margin-block-start: var(--space-2xs);
+  padding-inline-start: var(--space-s);
+}
+
+@include bp.wide {
+  .primary-nav__toggle {
+    display: none;
+  }
+
+  .primary-nav details .primary-menu,
+  .primary-nav details:not([open]) .primary-menu {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-s) var(--space-m);
+  }
+
+  .primary-menu .menu-item-has-children {
+    position: relative;
+  }
+
+  .primary-menu .sub-menu {
+    position: absolute;
+    z-index: var(--z-menu);
+    inset-block-start: 100%;
+    inset-inline-start: 0;
+    display: none;
+    min-width: var(--menu-min-width);
+    margin: 0;
+    padding: var(--space-s);
+    border: var(--line-width) solid var(--color-line);
+    background: var(--color-paper);
+  }
+
+  .primary-menu .menu-item-has-children:hover > .sub-menu,
+  .primary-menu .menu-item-has-children:focus-within > .sub-menu {
+    display: grid;
+  }
+}

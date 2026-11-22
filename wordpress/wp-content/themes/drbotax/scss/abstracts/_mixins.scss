@@ -1,0 +1,11 @@
+@mixin motion {
+  @media (prefers-reduced-motion: no-preference) {
+    @content;
+  }
+}
+
+@mixin reduced {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}

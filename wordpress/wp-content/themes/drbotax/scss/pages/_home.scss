@@ -1,0 +1,15 @@
+.site-main--front {
+  padding-block: 0;
+}
+
+.featured {
+  padding-block: 0 var(--space-2xl);
+}
+
+.featured__header {
+  margin-block-end: var(--space-l);
+}
+
+.featured__empty {
+  color: var(--color-muted);
+}
