@@ -40,6 +40,16 @@ Run that command from the theme directory once `scss/styles.scss` exists.
 
 Partials live under `scss/abstracts`, `base`, `layout`, `components`, `pages`, and `utilities`. Load them with `@use` and `@forward`. Motion (hover, entrance, drawers) is CSS, uses `transform` and `opacity`, and is disabled when the shopper prefers reduced motion.
 
+### Primary menu and product category mega menu
+
+1. **Appearance → Menus**: create a Header menu with Home, Shop, Blog (or other pages).
+2. Add a **Custom Link** for Product Categories (title e.g. “دسته بندی محصولات”; URL = Shop page or `#`).
+3. **Screen Options** → enable **CSS Classes**.
+4. On that item, set the class `drbotax-mega`.
+5. Assign the menu to the **Primary** location.
+
+The theme injects a live WooCommerce `product_cat` mega panel into that item. You do not add every category to the menu by hand.
+
 ## Development rules
 
 Project conventions for agents and contributors are in `.cursor/rules/`:
