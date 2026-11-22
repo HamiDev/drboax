@@ -32,7 +32,9 @@ services:
       start_period: 30s
 
   wordpress:
-    image: wordpress:7.1.5-php8.4-apache
+    build:
+      context: ./docker/wordpress
+    image: drbotax-wordpress:7.1.5-php8.4
     container_name: drbotax-wordpress
     depends_on:
       db:
