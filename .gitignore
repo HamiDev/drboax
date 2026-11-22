@@ -1,0 +1,41 @@
+# Secrets and local env
+.env
+.env.*
+!.env.example
+
+# Local Compose overrides
+docker-compose.override.yml
+
+# OS and editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs, caches, and source maps
+*.log
+.phpunit.result.cache
+.stylelintcache
+.sass-cache/
+**/*.css.map
+**/*.js.map
+
+# Dependencies
+node_modules/
+vendor/
+
+# Database dumps and migration backups
+*.sql
+*.sql.gz
+*.wpress
+
+# WordPress core is created by the Docker image on first boot.
+# Track the custom theme only.
+/wordpress/*
+!/wordpress/wp-content/
+/wordpress/wp-content/*
+!/wordpress/wp-content/themes/
+/wordpress/wp-content/themes/*
+!/wordpress/wp-content/themes/drbotax/

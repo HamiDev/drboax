@@ -1,0 +1,8 @@
+# Theme toolchain. Compiled CSS is committed; maps and installs are not.
+node_modules/
+vendor/
+.sass-cache/
+.stylelintcache/
+*.css.map
+*.js.map
+.DS_Store
