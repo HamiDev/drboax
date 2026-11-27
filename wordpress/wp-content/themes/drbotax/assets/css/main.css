@@ -1704,6 +1704,11 @@ ul.woocommerce-error {
   margin: 0;
 }
 
+.wp-block-woocommerce-empty-cart-block > .empty-cart__visual {
+  margin-inline: auto;
+  margin-block-end: var(--space-s);
+}
+
 .empty-cart__image {
   display: block;
   width: 100%;

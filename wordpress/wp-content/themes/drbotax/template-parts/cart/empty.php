@@ -11,23 +11,12 @@ $drbotax_title = trim( (string) drbotax_mod( 'empty_cart_title' ) );
 $drbotax_text  = trim( (string) drbotax_mod( 'empty_cart_text' ) );
 $drbotax_label = trim( (string) drbotax_mod( 'empty_cart_button_label' ) );
 $drbotax_url   = drbotax_empty_cart_shop_url();
-$drbotax_image = drbotax_empty_cart_image_url();
 ?>
 <section
 	class="empty-cart"
 	<?php echo '' !== $drbotax_title ? 'aria-labelledby="empty-cart-title"' : 'aria-label="' . esc_attr__( 'Cart', 'drbotax' ) . '"'; ?>
 >
-	<figure class="empty-cart__visual">
-		<img
-			class="empty-cart__image"
-			src="<?php echo esc_url( $drbotax_image ); ?>"
-			alt=""
-			width="1024"
-			height="682"
-			loading="eager"
-			decoding="async"
-		>
-	</figure>
+	<?php get_template_part( 'template-parts/cart/empty-image' ); ?>
 
 	<div class="empty-cart__copy">
 		<?php if ( '' !== $drbotax_title ) : ?>
